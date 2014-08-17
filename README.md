@@ -1,0 +1,36 @@
+cabal-exec-install.sh
+==================
+
+script for (automized) installation of haskell executables with cabal using sandboxes
+
+###main properties:
+- sandboxes for everything (one sandbox per package).
+- installs executables to $HOME/.cabal/bin
+  (so add that to PATH, and be done)
+- currently the sandbox directory is hardcoded to $HOME/.cabal/sandboxes/
+
+### usage description:
+0. [optional] delete $HOME/.ghc and $HOME/.cabal
+1. add $HOME/.cabal/bin to PATH
+2. modify the MAIN section of the script to contain a "echo-install foo" line for each executable foo you want installed.
+3. run the script.
+4. wait an hour while everything installs
+
+  - result:
+    - each foo will be sandbox-installed in $HOME/.cabal/sandboxes/foo/
+    - the executables will be put in $HOME/.cabal/bin/
+
+### uninstall:
+1. delete $HOME/.cabal/sandboxes
+2. delete the relevant executables
+3. delete this file :D
+
+### target:
+- linux
+- tested on archlinux with only the ghc package installed
+- **not** haskell platform
+
+### notes:
+- one warning: the sandbox directory can easily grow to several GB of size.
+- it might be possible to delete certain intermediate files after one executable has finished installation. (todo)
+- no abortion on errors, and lots of output from cabal-install. kinda ugly (todo).
