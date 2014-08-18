@@ -2,7 +2,16 @@
 
 
 # short-description:
-#   script for automatic sandboxed installation of executable packages from cabal.
+#   script for (automatized) installation of haskell executables
+#   with cabal using sandboxes.
+# intention
+#   if you..
+#     - want a basic set of executables, but do not use haskell platform
+#     - do not want to clutter your global/user package databases,
+#       but use sandboxes instead
+# target:
+#   - linux
+#   - tested on archlinux with only the ghc package installed
 # main properties:
 #   - sandboxes for everything (one sandbox per package).
 #   - installs executables to $HOME/.cabal/bin
@@ -22,10 +31,6 @@
 #   1) delete $HOME/.cabal/sandboxes
 #   2) delete the relevant executables
 #   3) delete this file :D
-# target:
-#   - linux
-#   - tested on archlinux with only the ghc package installed
-#   - NOT haskell platform
 
 # notes: 
 # - one warning: the sandbox directory can easily grow to several GB of size.
