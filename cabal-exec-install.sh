@@ -110,13 +110,16 @@ echo-install happy
 echo-install hoogle
 echo-install pointful
 echo-install pointfree
+echo-install threadscope
+echo-install pandoc
 echo-install alex "(required by gtk2hs-buildtools)"
 
 # echo-install gtk2hs-buildtools "(required by gtk)"
 # echo-install leksah
 
 echo-install aeson
-echo-install haddock
+echo-install hscolour
+echo-install haddock-2.14.3
 
 # eclipse-fp stuff; does not compile with my current setup :-(
 #echo-install buildwrapper-0.7.2
