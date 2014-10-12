@@ -51,7 +51,11 @@ function install {
   mkdir -p $HOME/.cabal/sandboxes/$1/
   cd $HOME/.cabal/sandboxes/$1/
   cabal sandbox init -v0
-  cabal install -v0 --reinstall "$1" --bindir=$HOME/.cabal/bin/
+  # make sure we reinstall even if $package is a library as well, and already
+  # installed, by unregistering the library package itself from the sandbox
+  cabal exec -- ghc-pkg unregister -v0 "$1" &> /dev/null
+  cabal install -v0 "$1" --only-dependencies --bindir=$HOME/.cabal/bin/
+  cabal install -v1 "$1" --bindir=$HOME/.cabal/bin/
 }
 
 function echo-install {
