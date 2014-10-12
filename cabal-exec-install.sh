@@ -55,7 +55,7 @@ function install {
   # installed, by unregistering the library package itself from the sandbox
   cabal exec -- ghc-pkg unregister -v0 "$1" &> /dev/null
   cabal install -v0 "$1" --only-dependencies --bindir=$HOME/.cabal/bin/
-  cabal install -v1 "$1" --bindir=$HOME/.cabal/bin/
+  cabal install -v1 "$1" --bindir=$HOME/.cabal/bin/ | grep "Installed"
 }
 
 function echo-install {
@@ -102,7 +102,6 @@ function exit {
 init
 
 echo-install cabal-install
-cabal --version
 
 # not completely certain that this is necessary; better safe than sorry.
 cabal update
