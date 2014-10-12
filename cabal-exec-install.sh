@@ -50,8 +50,8 @@
 function install {
   mkdir -p $HOME/.cabal/sandboxes/$1/
   cd $HOME/.cabal/sandboxes/$1/
-  cabal sandbox init
-  cabal install -v0 "$1" --bindir=$HOME/.cabal/bin/
+  cabal sandbox init -v0
+  cabal install -v0 --reinstall "$1" --bindir=$HOME/.cabal/bin/
 }
 
 function echo-install {
