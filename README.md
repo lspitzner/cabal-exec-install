@@ -6,8 +6,9 @@ script for (automatized) installation of haskell executables with cabal using sa
 ### intention
 
 if you..
-- want a basic set of executables, but do not use haskell platform
+- want a basic set of cabal executables (such as hoogle, pandoc, hlint, ..), but do not use haskell platform
 - do not want to clutter your global/user package databases, but use sandboxes instead
+- do not want to learn/use nix (http://nixos.org/nix/) (i survived without it so far)
 
 ### target:
 - linux
