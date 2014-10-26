@@ -23,9 +23,11 @@ if you..
 ### usage description:
 0. [optional] delete $HOME/.ghc and $HOME/.cabal
 1. add $HOME/.cabal/bin to PATH
-2. modify the MAIN section of this script to contain a "echo-install foo" line for each executable foo you want installed.
-3. run the script.
+2. modify the MAIN section of this script to contain a "echo-install foo" line for each executable foo you want installed
+3. run the script
 4. wait an hour while everything installs
+5. [optional] enable "require-sandbox: True" in ~/.cabal/config to never
+   accidentally install stuff user-globally
 
   - result:
     - each foo will be sandbox-installed in $HOME/.cabal/sandboxes/foo/
