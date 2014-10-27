@@ -32,6 +32,7 @@
 #   result:
 #     - each foo will be sandbox-installed in $HOME/.cabal/sandboxes/foo/
 #     - the executables will be put in $HOME/.cabal/bin/
+#     - the data directory for the executable will be $HOME/.cabal/data/foo/
 # uninstall:
 #   1) delete $HOME/.cabal/sandboxes
 #   2) delete the relevant executables
@@ -39,9 +40,11 @@
 
 # notes: 
 # - one warning: the sandbox directory can easily grow to several GB of size.
-# - it might be possible to delete certain intermediate files after one
-#   executable has finished installation. (todo) 
-# - no abortion on errors, and lots of output from cabal-install. kinda ugly (todo).
+#   (there should be no problems deleting it once the executables are
+#    installed, though. but then you need to re-install everything for
+#    upgrades - not worth it imho)
+# - no error handling, really. if there are errors, you will have to manually
+#   fix them to get the relevant executables installed.
 
 # NO WARRANTIES.
 
@@ -59,8 +62,8 @@ function install {
   # make sure we reinstall even if $package is a library as well, and already
   # installed, by unregistering the library package itself from the sandbox
   cabal exec -- ghc-pkg unregister -v0 "$1" &> /dev/null
-  cabal install -v0 "$1" --only-dependencies --bindir=$HOME/.cabal/bin/
-  cabal install -v1 "$1" --bindir=$HOME/.cabal/bin/ | grep "Installed"
+  cabal install -v0 "$1" --only-dependencies
+  cabal install -v1 "$1" --bindir=$HOME/.cabal/bin/ --datadir=$HOME/.cabal/data/$1/ | grep "Installed"
 }
 
 function echo-install {
