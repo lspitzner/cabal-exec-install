@@ -123,7 +123,7 @@ echo-install pointful
 echo-install pointfree
 # threadscope does not compile atm, without specifying constraint gtk >= 0.12.1 && < 0.13.
 # echo-install threadscope
-echo-install pandoc
+# echo-install pandoc
 echo-install alex "(required by gtk2hs-buildtools)"
 
 # echo-install gtk2hs-buildtools "(required by gtk)"
