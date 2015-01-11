@@ -133,7 +133,7 @@ echo-install alex "(required by gtk2hs-buildtools)"
 
 echo-install aeson
 echo-install hscolour
-echo-install haddock-2.14.3
+echo-install haddock
 
 # eclipse-fp stuff; does not compile with my current setup :-(
 #echo-install buildwrapper-0.7.2
