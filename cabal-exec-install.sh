@@ -143,6 +143,7 @@ echo-install haddock
 echo-install hlint
 echo-install ghc-core
 echo-install ghc-mod
+echo-install hdevtools
 #echo-install djinn
 #echo-install arrowp
 
