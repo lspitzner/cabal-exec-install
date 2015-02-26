@@ -128,8 +128,8 @@ echo-install pandoc-citeproc
 echo-install graphmod
 echo-install alex "(required by gtk2hs-buildtools)"
 
-# echo-install gtk2hs-buildtools "(required by gtk)"
-# echo-install leksah
+echo-install gtk2hs-buildtools "(required by gtk)"
+echo-install leksah
 
 echo-install aeson
 echo-install hscolour
