@@ -55,11 +55,12 @@
 
 ############## UTILITES
 
-prefix="$HOME/.cabal/"
+PREFIX="$HOME/.cabal"
 
 function install {
-  mkdir -p $HOME/.cabal/sandboxes/$1/
-  cd $HOME/.cabal/sandboxes/$1/
+  SANDBOXDIR="$HOME/.cabal/sandboxes/$1"
+  mkdir -p "$SANDBOXDIR"
+  cd "$SANDBOXDIR"
   cabal sandbox init -v0
   # make sure we reinstall even if $package is a library as well, and already
   # installed, by unregistering the library package itself from the sandbox
@@ -73,7 +74,8 @@ function install {
                          --disable-library-profiling \
                          --disable-shared \
                          --disable-executable-dynamic \
-                         --prefix="$prefix" | grep "Installed"
+                         --bindir="$PREFIX/bin" \
+                         --datadir="$PREFIX/share" | grep "Installed"
 }
 
 function echo-install {
