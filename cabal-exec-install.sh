@@ -55,15 +55,25 @@
 
 ############## UTILITES
 
+prefix="$HOME/.cabal/"
+
 function install {
   mkdir -p $HOME/.cabal/sandboxes/$1/
   cd $HOME/.cabal/sandboxes/$1/
   cabal sandbox init -v0
   # make sure we reinstall even if $package is a library as well, and already
   # installed, by unregistering the library package itself from the sandbox
-  cabal exec -- ghc-pkg unregister -v0 "$1" &> /dev/null
-  cabal install -v0 "$1" --only-dependencies
-  cabal install -v1 "$1" --bindir=$HOME/.cabal/bin/ --datadir=$HOME/.cabal/data/$1/ | grep "Installed"
+  cabal sandbox hc-pkg -- unregister -v0 "$1" &> /dev/null
+  cabal install -v0 "$1" --only-dependencies \
+                         --disable-documentation \
+                         --disable-library-profiling \
+                         --disable-shared \
+                         --disable-executable-dynamic
+  cabal install -v1 "$1" --disable-documentation \
+                         --disable-library-profiling \
+                         --disable-shared \
+                         --disable-executable-dynamic \
+                         --prefix="$prefix" | grep "Installed"
 }
 
 function echo-install {
