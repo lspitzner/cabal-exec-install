@@ -68,11 +68,11 @@ function install {
   cabal install -v0 "$1" --only-dependencies \
                          --disable-documentation \
                          --disable-library-profiling \
-                         --disable-shared \
+#                         --disable-shared \
                          --disable-executable-dynamic
   cabal install -v1 "$1" --disable-documentation \
                          --disable-library-profiling \
-                         --disable-shared \
+#                         --disable-shared \
                          --disable-executable-dynamic \
                          --bindir="$PREFIX/bin" \
                          --datadir="$PREFIX/share" | grep "Installed"
