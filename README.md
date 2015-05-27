@@ -48,3 +48,7 @@ if you..
    upgrades - not worth it imho)
 - no error handling, really. if there are errors, you will have to manually
   fix them to get the relevant executables installed.
+- ghc-7.8.4 still is the safest bet for installing executables (until all
+  major packages become compatible with ghc-7.10). If your system ships with
+  ghc-7.10, you can use a locally installed ghc-7.8.4 by passing the
+  `--with-compiler=..` flag to this script; it will be forwarded to cabal.
