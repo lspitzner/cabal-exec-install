@@ -57,6 +57,8 @@
 
 PREFIX="$HOME/.cabal"
 
+FLAGS="$*"
+
 function install {
   SANDBOXDIR="$HOME/.cabal/sandboxes/$1"
   mkdir -p "$SANDBOXDIR"
@@ -68,14 +70,14 @@ function install {
   cabal install -v0 "$1" --only-dependencies \
                          --disable-documentation \
                          --disable-library-profiling \
-#                         --disable-shared \
-                         --disable-executable-dynamic
+                         --disable-executable-dynamic \
+                         $FLAGS
   cabal install -v1 "$1" --disable-documentation \
                          --disable-library-profiling \
-#                         --disable-shared \
                          --disable-executable-dynamic \
                          --bindir="$PREFIX/bin" \
-                         --datadir="$PREFIX/share" | grep "Installed"
+                         --datadir="$PREFIX/share" \
+                         $FLAGS | grep "Installed"
 }
 
 function echo-install {
