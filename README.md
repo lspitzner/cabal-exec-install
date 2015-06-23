@@ -14,7 +14,14 @@ if you..
 
 ### target:
 - linux
-- tested on archlinux with only the ghc package installed
+- tested on
+  - archlinux with only the ghc package installed
+  - debian: you have to manually install a more recent cabal-install
+    because the default one in the official repos does not support
+    sandboxes. Once it is installed, you can clear your user
+    package-database again (if cabal-install put some garbage in
+    there) and use this script to upgrade cabal-install in the future
+    (with no cleaning necessary).
 
 ### main properties:
 - sandboxes for everything (one sandbox per package).
@@ -34,7 +41,7 @@ if you..
   - result:
     - each foo will be sandbox-installed in $HOME/.cabal/sandboxes/foo/
     - the executables will be put in $HOME/.cabal/bin/
-    - the data directory for the executable will be $HOME/.cabal/data/foo/
+    - the data directory for the executable will be $HOME/.cabal/share/foo/
 
 ### uninstall:
 1. delete $HOME/.cabal/sandboxes
@@ -48,3 +55,7 @@ if you..
    upgrades - not worth it imho)
 - no error handling, really. if there are errors, you will have to manually
   fix them to get the relevant executables installed.
+- ghc-7.8.4 still is the safest bet for installing executables (until all
+  major packages become compatible with ghc-7.10). If your system ships with
+  ghc-7.10, you can use a locally installed ghc-7.8.4 by passing the
+  `--with-compiler=..` flag to this script; it will be forwarded to cabal.
