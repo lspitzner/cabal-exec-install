@@ -150,6 +150,8 @@ echo-install aeson
 echo-install hscolour
 echo-install haddock
 
+echo-install c2hs
+
 # eclipse-fp stuff; does not compile with my current setup :-(
 #echo-install buildwrapper-0.7.2
 #echo-install scion-browser
